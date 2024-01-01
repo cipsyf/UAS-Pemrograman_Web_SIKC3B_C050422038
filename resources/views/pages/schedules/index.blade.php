@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Schedules')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,12 +11,12 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>All Users</h1>
+                <h1>All Schedules</h1>
 
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Users</a></div>
-                    <div class="breadcrumb-item">All Users</div>
+                    <div class="breadcrumb-item"><a href="#">Schedules</a></div>
+                    <div class="breadcrumb-item">All Schedules</div>
                 </div>
             </div>
             <div class="section-body">
@@ -31,15 +31,15 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Users</h4>
+                                <h4>All Schedules</h4>
                                 <div class="section-header-button">
-                                    <a href="{{ route('user.create') }}" class="btn btn-primary">New User</a>
+                                    <a href="{{ route('schedule.create') }}" class="btn btn-primary">New Schedule</a>
                                 </div>
                             </div>
                             <div class="card-body">
 
                                 <div class="float-right">
-                                    <form method="GET", action="{{ route('user.index') }}">
+                                    <form method="GET", action="{{ route('schedule.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
@@ -55,35 +55,51 @@
                                     <table class="table-striped table">
                                         <tr>
 
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>HandPhone</th>
-                                            <th>Created At</th>
+                                            <th>#</th>
+                                            <th>Subject</th>
+                                            <th>Day</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Room</th>
+                                            <th>Attendance Code</th>
                                             <th>Action</th>
                                         </tr>
-                                        @foreach ($users as $user)
+                                        @foreach ($schedules as $schedule)
                                             <tr>
                                                 <td>
-                                                    {{ $user->name }}
+                                                    {{ $schedule->id }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->email }}
+                                                    {{ $schedule->subject_id }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->handphone }}
+                                                    {{ $schedule->hari }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->created_at }}
+                                                    {{ $schedule->jam_mulai }}
+                                                </td>
+                                                <td>
+                                                    {{ $schedule->jam_selesai }}
+                                                </td>
+                                                <td>
+                                                    {{ $schedule->ruangan }}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('user.edit', $user->id) }}'
+                                                        <a class="btn btn-sm btn-primary btn-icon">
+                                                            Generate QR Code
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center">
+                                                        <a href='{{ route('schedule.edit', $schedule->id) }}'
                                                             class="btn btn-sm btn-warning btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
-                                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                                        <form action="{{ route('schedule.destroy', $schedule->id) }}" method="POST"
                                                             class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
@@ -99,7 +115,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $users->withQueryString()->links() }}
+                                    {{ $schedules->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>

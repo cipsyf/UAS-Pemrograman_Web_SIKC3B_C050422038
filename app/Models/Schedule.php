@@ -9,6 +9,17 @@ class Schedule extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'subject_id',
+        'hari',
+        'jam_mulai',
+        'jam_selesai',
+        'ruangan',
+        'kode_absensi',
+        'tahun_akademik',
+        'semester',
+    ];
+
     public function subject()
     {
         return $this->belongsTo(Subject::class);
