@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-    <title>@yield('title') &mdash; simpadu-c050422038</title>
+    <title>@yield('title') &mdash; simpadu-C050422038</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"
